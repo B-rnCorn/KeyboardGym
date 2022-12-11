@@ -1,0 +1,34 @@
+.panel-wrapper{
+    width: 1440px;
+    .row{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .logo{
+            display: flex;
+            flex-direction: row;
+            &_picture{
+                height: 50px;
+                width: 70px;
+            }
+            &_text{
+                width: 413px;
+                height: 50px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 32px;
+                line-height: 38px;
+                text-align: center;
+            }
+        }
+        .auth_button{
+            height: 50px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 32px;
+            line-height: 38px;
+            text-align: center;
+        }
+    }
+}

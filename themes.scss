@@ -1,0 +1,20 @@
+@forward 'node_modules/@nebular/theme/styles/theming';
+@use 'node_modules/@nebular/theme/styles/theming' as *;
+@use 'node_modules/@nebular/theme/styles/themes/corporate';
+
+@font-face {
+    font-family: 'Jura';
+    src: url('src/assets/fonts/Jura-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$nb-themes: nb-register-theme(
+            (
+                font-family-primary: 'Jura',
+                font-family-secondary: 'Jura'
+
+            ),
+        corporate,
+        corporate,
+)

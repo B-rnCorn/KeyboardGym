@@ -1,0 +1,26 @@
+ul {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    box-sizing: border-box;
+    cursor: default;
+    ::-moz-selection {
+        background-color: transparent;
+        color: #000;
+    }
+
+    ::selection {
+        background-color: transparent;
+        color: #000;
+    }
+}
+
+.simple-keyboard {
+    max-width: 850px;
+}
