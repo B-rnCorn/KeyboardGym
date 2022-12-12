@@ -1,29 +1,31 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-@Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
-})
-export class LoginComponent implements OnInit {
-    showPassword = false;
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
-    loginForm = new FormGroup({
+@Component({
+  selector: 'app-register',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
+})
+export class RegistrationComponent implements OnInit {
+
+    showPassword = false;
+    isSubmitClicked = false;
+    isAlertActive = false;
+
+    registrationForm = new FormGroup({
         login: new FormControl('', [Validators.required,
             Validators.pattern('[a-z0-9_-]{3,15}'),
             Validators.minLength(5),
             Validators.maxLength(50)]),
+        email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', [Validators.required,
             Validators.pattern('(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}'),
         ]),
     });
-   isSubmitClicked = false;
-    constructor() {
-    }
+  constructor() { }
 
-    ngOnInit(): void {
-    }
-
+  ngOnInit(): void {
+  }
     toggleShowPassword() {
         this.showPassword = !this.showPassword;
     }
@@ -34,7 +36,7 @@ export class LoginComponent implements OnInit {
         return 'password';
     }
     changeInputStatus(formControlName: string, validatorStateInvalid: boolean): string {
-        if (validatorStateInvalid && (this.loginForm.controls[formControlName].touched || this.isSubmitClicked))
+        if (validatorStateInvalid && (this.registrationForm.controls[formControlName].touched || this.isSubmitClicked))
         {
             return 'danger';
         } else {

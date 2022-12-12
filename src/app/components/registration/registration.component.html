@@ -1,0 +1,56 @@
+<div class="registration-wrapper">
+    <nb-card size="large" class="registration-form">
+        <nb-card-header class="registration-form__header">
+            <div class="header__text">
+                Регистрация
+            </div>
+        </nb-card-header>
+        <nb-card-body class="registration-form__body">
+            <form autocomplete="on" [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+                <div class="body__input">
+                    <label>Логин</label>
+                    <input nbInput
+                           fullWidth
+                           type="text"
+                           placeholder="Ваш логин"
+
+                           [formControlName]="'login'"
+                           [status]="changeInputStatus('login', registrationForm.controls['login'].invalid)">
+                </div>
+                <div class="body__input">
+                    <label>Пароль</label>
+                    <nb-form-field>
+                        <input nbInput
+                               fullWidth
+                               placeholder="Ваш пароль"
+                               [type]="getInputType()"
+                               [status]="changeInputStatus('password', registrationForm.controls['password'].invalid)"
+                               [formControlName]="'password'">
+                        <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+                            <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                                     pack="eva"
+                                     [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+                            </nb-icon>
+                        </button>
+                    </nb-form-field>
+                </div>
+                <div class="body__input">
+                    <label>Почта</label>
+                    <input nbInput
+                           fullWidth
+                           type="text"
+                           placeholder="Ваша Почта@mailbox.com"
+                           [formControlName]="'email'"
+                           nbTooltipStatus="danger"
+                           [status]="changeInputStatus('email', registrationForm.controls['email'].invalid)">
+                </div>
+                <div class="body__button">
+                    <div class="login-link">
+                        <label>Уже есть аккаунт? <a [routerLink]="'/login'">Войдите</a></label>
+                    </div>
+                    <button nbButton fullWidth status="primary" type="submit">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+                </div>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</div>

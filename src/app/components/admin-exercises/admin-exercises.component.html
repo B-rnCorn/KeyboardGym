@@ -1,0 +1,32 @@
+<div class="setting-level" routerLink="/settings-level">Настроить уровень сложности</div>
+<div class="exercises-wrapper">
+
+    <nb-card status="info" class="exercises-item">
+        <nb-card-header class="exercises-item__header">
+            <div>Упражнение Новичок</div>
+            <div>20.12.2022</div>
+        </nb-card-header>
+        <nb-card-body class="exercises-item__body">
+            <div>Уровень сложности: 1
+            </div>
+            <div>Количество символов: 30
+            </div>
+            <div>Время выполнения: 2 мин
+            </div>
+            <div class="last">Возможное количество ошибок: 3</div>
+        </nb-card-body>
+        <nb-card-footer class="exercises-item__footer">
+            <div class="text-vision" (click)="showText()">{{buttonText}}</div>
+            <div *ngIf="isShowText" class="text-exercises">
+                Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех живут они в буквенных домах на берегу.
+                Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.
+            </div>
+        </nb-card-footer>
+    </nb-card>
+    <div class="create-exercises">
+        <nb-icon class="create-exercises__icon" icon="plus-circle-outline"></nb-icon>
+        <div class="create-exercises__button" routerLink="/create-exercises">Создать новое упражнение</div>
+    </div>
+
+
+</div>
