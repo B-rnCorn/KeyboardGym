@@ -1,0 +1,85 @@
+.exercises-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .exercises-form {
+        width: 1090px;
+        border-radius: 20px;
+
+
+        &__header {
+            display: flex;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 47px;
+        }
+
+        &__body {
+            margin-left: 60px;
+            margin-top: 20px;
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 38px;
+
+            .method-create {
+                display: flex;
+                margin-bottom: 30px;
+
+                &__checkbox {
+
+                    margin-left: 40px;
+
+                    nb-checkbox:not(:only-child) {
+                        margin-right: 1.5rem;
+
+                    }
+                }
+            }
+
+            .name-exercises {
+                margin-bottom: 30px;
+                width: 400px;
+
+            }
+
+            .level {
+                margin-bottom: 30px;
+                label {
+                    margin-right: 20px;
+                }
+
+                nb-select {
+                    width: 50px;
+                }
+            }
+
+            .settings {
+                margin-bottom: 30px;
+                display: flex;
+
+                input {
+                    margin: 0 15px;
+                    width: 159px;
+                    text-align: center;
+                }
+            }
+
+            .text-exercises {
+                margin-bottom: 30px;
+               textarea {
+                    width: 900px;
+                }
+            }
+            .create-button{
+                width: 40%;
+                min-width: 300px;
+                height: 75px;
+              margin-left: 25%;
+            }
+        }
+    }
+}

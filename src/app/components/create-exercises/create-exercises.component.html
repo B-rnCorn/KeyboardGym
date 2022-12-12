@@ -1,0 +1,57 @@
+<div class="exercises-wrapper">
+    <nb-card size="giant" class="exercises-form">
+        <nb-card-header class="exercises-form__header">
+            <div class="header__text">Создание нового упражнения</div>
+        </nb-card-header>
+        <nb-card-body class="exercises-form__body">
+            <div class="method-create">
+                <label class="method-create__header">Способ создания упражнения: </label>
+                <div class="method-create__checkbox">
+                <nb-checkbox status="info">ручной</nb-checkbox>
+                <nb-checkbox status="info">автоматический</nb-checkbox>
+                </div>
+            </div>
+            <div class="name-exercises">
+                <label>Название упражнения</label>
+                <input nbInput
+                       fullWidth
+                       type="text"
+                       placeholder="Название упражнения"
+                       required
+                >
+            </div>
+            <div class="level">
+                <label>Уровень сложности</label>
+                <nb-select placeholder="1" shape="rectangle" >
+                    <nb-option value="1">1</nb-option>
+                    <nb-option value="2">2</nb-option>
+                    <nb-option value="3">3</nb-option>
+                </nb-select>
+            </div>
+            <div class="settings">
+                <label>Время выполнения</label>
+                <input nbInput
+                       fullWidth
+                       type="text"
+                       placeholder="60"
+                       required
+                >
+                <label>Длина упражнения</label>
+                <input nbInput
+                       fullWidth
+                       type="text"
+                       placeholder="300"
+                       required
+                >
+            </div>
+            <div class="text-exercises">
+                <label>Текст упражнения</label>
+                <textarea nbInput fullWidth placeholder="Введите текст"></textarea>
+            </div>
+            <div class="create-button">
+                <button nbButton fullWidth status="primary" type="submit">СОЗДАТЬ</button>
+            </div>
+        </nb-card-body>
+
+    </nb-card>
+</div>

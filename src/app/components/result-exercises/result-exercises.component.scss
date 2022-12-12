@@ -1,0 +1,39 @@
+.result-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .result-form {
+        width: 1200px;
+        border-radius: 20px;
+
+        &__header {
+            display: flex;
+            justify-content: center;
+            color: #598BFF;
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 47px;
+        }
+
+        &__body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            font-weight: 400;
+            font-size: 36px;
+            line-height: 43px;
+
+            div {
+                margin-top: 20px;
+            }
+
+            button {
+                margin-top: 20px;
+                width: 25%;
+            }
+        }
+    }
+}

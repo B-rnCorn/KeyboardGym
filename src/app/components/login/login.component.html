@@ -1,1 +1,51 @@
+<div class="login-content">
+    <nb-card size="medium" class="login-form">
+        <nb-card-header class="login-form__header">
+            <div class="header__text">
+                Вход
+            </div>
+        </nb-card-header>
+        <nb-card-body class="login-form__body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="body__input">
+                    <label>Логин</label>
+                    <input nbInput
+                           fullWidth
+                           type="text"
+                           placeholder="Ваш логин"
+                           required
+                           [formControlName]="'login'"
+                            [status]="changeInputStatus('login', loginForm.controls['password'].invalid)"
+                    >
+
+                </div>
+                <div class="body__input">
+                    <label>Пароль</label>
+                    <nb-form-field>
+                        <input nbInput
+                               fullWidth
+                               [type]="getInputType()"
+                               placeholder="Ваш пароль"
+                               required
+                               [formControlName]="'password'"
+                        [status]="changeInputStatus('password',loginForm.controls['password'].invalid)"
+                        >
+                        <button nbSuffix nbButton ghost (click)="toggleShowPassword()" type="button">
+                            <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                                     pack="eva"
+                                     [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+                            </nb-icon>
+                        </button>
+                    </nb-form-field>
+                </div>
+                <div class="body__button">
+                    <div class="login-link">
+                        <label>Ещё нет аккаунта? <a [routerLink]="'/registration'">Зарегистрируйтесь</a></label>
+                    </div>
+                    <button nbButton fullWidth status="primary" type="submit">ВОЙТИ</button>
+                </div>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</div>
 

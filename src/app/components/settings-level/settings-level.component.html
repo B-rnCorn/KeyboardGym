@@ -1,0 +1,100 @@
+<div class="settings-wrapper">
+    <nb-card size="large" class="settings-form">
+        <nb-card-header class="settings-form__header">
+            <div class="header__text">Настройка уровня сложности</div>
+        </nb-card-header>
+        <nb-card-body class="settings-form__body">
+            <nb-card status="success" class="level-item">
+                <nb-card-header class="level-item__header">
+                    <div>Уровень 1</div>
+                    <div class="setting">Настроить</div>
+                </nb-card-header>
+                <nb-card-body class="level-item__body">
+                    <div class="time">Время выполнения упражнения:
+                    </div>
+
+                    <ngx-slider [(value)]="minValueTime" [(highValue)]="maxValueTime" [options]="timeLevelOne"></ngx-slider>
+
+                    <div class="length">Длина упражнения:
+                    </div>
+
+                    <ngx-slider [(value)]="minLength" [(highValue)]="maxLength" [options]="lengthLevelOne"></ngx-slider>
+                    <div class="mistakes">
+                        <label>Максимальное количество ошибок:
+                        </label>
+                        <input type="number">
+                    </div>
+                    <div class="zone">
+                        <label>Зоны клавиатуры: </label>
+                        <nb-checkbox status="success">1</nb-checkbox>
+                        <nb-checkbox status="success">2</nb-checkbox>
+                        <nb-checkbox status="success">3</nb-checkbox>
+                        <nb-checkbox status="success">4</nb-checkbox>
+                    </div>
+                </nb-card-body>
+
+            </nb-card>
+            <nb-card status="info" class="level-item">
+                <nb-card-header class="level-item__header">
+                    <div>Уровень 2</div>
+                    <div class="setting">Настроить</div>
+                </nb-card-header>
+                <nb-card-body class="level-item__body">
+                    <div class="time">Время выполнения упражнения:
+                    </div>
+
+                    <ngx-slider [(value)]="minValueTime2" [(highValue)]="maxValueTime2" [options]="timeLevelTwo"></ngx-slider>
+
+                    <div class="length">Длина упражнения:
+                    </div>
+
+                    <ngx-slider [(value)]="minLength2" [(highValue)]="maxLength2" [options]="lengthLevelTwo"></ngx-slider>
+                    <div class="mistakes">
+                        <label>Максимальное количество ошибок:
+                        </label>
+                        <input type="number">
+                    </div>
+                    <div class="zone">
+                        <label>Зоны клавиатуры: </label>
+                        <nb-checkbox status="info">1</nb-checkbox>
+                        <nb-checkbox status="info">2</nb-checkbox>
+                        <nb-checkbox status="info">3</nb-checkbox>
+                        <nb-checkbox status="info">4</nb-checkbox>
+                    </div>
+                </nb-card-body>
+
+            </nb-card>
+            <nb-card status="danger" class="level-item">
+                <nb-card-header class="level-item__header">
+                    <div>Уровень 3</div>
+                    <div class="setting">Настроить</div>
+                </nb-card-header>
+                <nb-card-body class="level-item__body">
+                    <div class="time">Время выполнения упражнения:
+                    </div>
+
+                    <ngx-slider [(value)]="minValueTime3" [(highValue)]="maxValueTime3" [options]="timeLevelThree"></ngx-slider>
+
+                    <div class="length">Длина упражнения:
+                    </div>
+
+                    <ngx-slider [(value)]="minLength3" [(highValue)]="maxLength3" [options]="lengthLevelThree"></ngx-slider>
+                    <div class="mistakes">
+                        <label>Максимальное количество ошибок:
+                        </label>
+                        <input type="number">
+                    </div>
+                    <div class="zone">
+                        <label>Зоны клавиатуры: </label>
+                        <nb-checkbox status="danger">1</nb-checkbox>
+                        <nb-checkbox status="danger">2</nb-checkbox>
+                        <nb-checkbox status="danger">3</nb-checkbox>
+                        <nb-checkbox status="danger">4</nb-checkbox>
+                    </div>
+                </nb-card-body>
+
+            </nb-card>
+        </nb-card-body>
+        <nb-card-footer class="settings-form__footer"></nb-card-footer>
+    </nb-card>
+</div>
