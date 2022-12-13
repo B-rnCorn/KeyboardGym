@@ -9,7 +9,19 @@
                 Клавиатурный тренажёр
             </div>
         </div>
-        <div class="auth_button">
+        <div class="nav_button__logged" [routerLink]="getBasedOnRoleRoute()" *ngIf="isLoggedIn()">
+            Упражнения
+        </div>
+        <div class="nav_button__logged" *ngIf="isLoggedIn()">
+            Статистика
+        </div>
+        <div class="nav_button__logged" [routerLink]="['registration']" *ngIf="isLoggedIn()">
+            Справочная информация
+        </div>
+        <div class="nav_button__logged" *ngIf="isLoggedIn()" (click)="onLogoutClick()">
+            Выход
+        </div>
+        <div class="nav_button" [routerLink]="['registration']" *ngIf="!isLoggedIn()">
             Зарегистрироваться
         </div>
     </div>

@@ -1,4 +1,28 @@
-<div style="width: 1000px; height: 600px;">
-    <input (input)="onInputChange($event)" class="input" value={{value}} disabled="true" placeholder="Tap on the virtual keyboard to start" />
+<nb-card class="exercise_card">
+    <nb-card-header>
+        <div class="header_items">
+            <div class="exercise_name">
+                {{exerciseName}}
+            </div>
+            <div class="available_time">Осталось времени:<span>{{this.timerInSeconds | timer}}</span></div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <span class="user-input__valid">{{userInput}}</span><span class="user-input__attention">{{correctInputCharacter}}</span>{{remainingText}}
+    </nb-card-body>
+    <nb-card-footer>
+        {{userInput}}<span class="user-input__invalid">{{lastInputCharacter}}</span>
+    </nb-card-footer>
+</nb-card>
+<!--<div class="task-field">
+    <div class="source-text">
+        {{sourceText}}
+    </div>
+    <br>
+    <div class="user-input">
+        <input (input)="onInputChange($event)" class="input" value={{value}} placeholder="Здесь будут отображаться введенные вами символы" />
+    </div>
+</div>-->
+<div style="width: 1000px; height: 200px;">
     <div class="simple-keyboard"></div>
 </div>

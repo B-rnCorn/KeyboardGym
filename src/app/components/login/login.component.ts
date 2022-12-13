@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
+import {take} from "rxjs";
+import {ALERTS_CONTENT} from "../../constants/constants";
+import {AuthService} from "../../services/auth.service";
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -7,6 +13,8 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
     showPassword = false;
+    isAlertActive = false;
+    alertText = '';
 
     loginForm = new FormGroup({
         login: new FormControl('', [Validators.required,
@@ -17,8 +25,9 @@ export class LoginComponent implements OnInit {
             Validators.pattern('(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}'),
         ]),
     });
-   isSubmitClicked = false;
-    constructor() {
+    isSubmitClicked = false;
+
+    constructor(private userService: UserService, private router: Router, private authService: AuthService) {
     }
 
     ngOnInit(): void {
@@ -27,21 +36,41 @@ export class LoginComponent implements OnInit {
     toggleShowPassword() {
         this.showPassword = !this.showPassword;
     }
+
     getInputType() {
         if (this.showPassword) {
             return 'text';
         }
         return 'password';
     }
+
     changeInputStatus(formControlName: string, validatorStateInvalid: boolean): string {
-        if (validatorStateInvalid && (this.loginForm.controls[formControlName].touched || this.isSubmitClicked))
-        {
+        if (validatorStateInvalid && (this.loginForm.controls[formControlName].touched || this.isSubmitClicked)) {
             return 'danger';
         } else {
             return 'basic';
         }
     }
-    onSubmit(){
 
+    onCloseAlert() {
+        this.isAlertActive = false;
+    }
+
+    onSubmit() {
+        this.isAlertActive = false;
+        this.alertText = '';
+        this.userService.fetchUsers().pipe(take(1)).subscribe(users => {
+            if (!users.find(user => user.login === this.loginForm.controls['login'].value)) {
+                this.isAlertActive = true;
+                this.alertText = ALERTS_CONTENT.LOGIN.WRONG_EMAIL_OR_PASSWORD;
+            } else if (!users.find(user => user.password === this.loginForm.controls['password'].value)) {
+                this.isAlertActive = true;
+                this.alertText = ALERTS_CONTENT.LOGIN.WRONG_EMAIL_OR_PASSWORD;
+            } else {
+                const loggedUser = users.find(user => user.login === this.loginForm.controls['login'].value);
+                loggedUser && this.authService.login(loggedUser)
+                this.router.navigate(['user-exercises']);
+            }
+        });
     }
 }

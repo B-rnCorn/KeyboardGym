@@ -13,17 +13,23 @@ import {
 } from "@nebular/theme";
 import {KeyboardComponent} from "./components/keyboard/keyboard.component";
 import {AppRoutingModule} from "./app-routing.module";
-import { TopPanelComponent } from './components/top-panel/top-panel.component';
-import { LoginComponent } from './components/login/login.component';
+import {TopPanelComponent} from './components/top-panel/top-panel.component';
+import {LoginComponent} from './components/login/login.component';
 import {NbEvaIconsModule} from "@nebular/eva-icons";
 import {ReactiveFormsModule} from "@angular/forms";
-import { RegistrationComponent } from './components/registration/registration.component';
-import { AdminExercisesComponent } from './components/admin-exercises/admin-exercises.component';
-import { SettingsLevelComponent } from './components/settings-level/settings-level.component';
+import {RegistrationComponent} from './components/registration/registration.component';
+import {AdminExercisesComponent} from './components/admin-exercises/admin-exercises.component';
+import {SettingsLevelComponent} from './components/settings-level/settings-level.component';
 import {NgxSliderModule} from "@angular-slider/ngx-slider";
-import { CreateExercisesComponent } from './components/create-exercises/create-exercises.component';
-import { UserExercisesComponent } from './components/user-exercises/user-exercises.component';
-import { ResultExercisesComponent } from './components/result-exercises/result-exercises.component';
+import {CreateExercisesComponent} from './components/create-exercises/create-exercises.component';
+import {UserExercisesComponent} from './components/user-exercises/user-exercises.component';
+import {ResultExercisesComponent} from './components/result-exercises/result-exercises.component';
+import {TimerPipe} from "./pipes/timer.pipe";
+import {ExerciseValidationService} from "./services/excercise-validation.service";
+import {UserService} from "./services/user.service";
+import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./services/auth.service";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -36,11 +42,14 @@ import { ResultExercisesComponent } from './components/result-exercises/result-e
         SettingsLevelComponent,
         CreateExercisesComponent,
         UserExercisesComponent,
-        ResultExercisesComponent
+        ResultExercisesComponent,
+        TimerPipe,
     ],
     imports: [
         AppRoutingModule,
+        HttpClientModule,
         BrowserModule,
+        CommonModule,
         NbThemeModule.forRoot({name: 'corporate'}),
         NbLayoutModule,
         NbButtonModule,
@@ -54,9 +63,13 @@ import { ResultExercisesComponent } from './components/result-exercises/result-e
         NgxSliderModule,
         NbCheckboxModule,
         NbOptionModule,
-        NbSelectModule
+        NbSelectModule,
     ],
-    providers: [],
+    providers: [
+        ExerciseValidationService,
+        UserService,
+        AuthService,
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

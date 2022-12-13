@@ -1,41 +1,43 @@
 <div class="setting-level">
-    <nb-select placeholder="1" shape="rectangle"  [(selected)]="selectedItem">
+    <nb-select placeholder="1" shape="rectangle" [(selected)]="selectedItem">
         <nb-option value="1">Уровень 1</nb-option>
         <nb-option value="2">Уровень 2</nb-option>
         <nb-option value="3">Уровень 3</nb-option>
     </nb-select>
 </div>
 <div class="exercises-wrapper">
-
-    <nb-card status="info" class="exercises-item">
-        <nb-card-header class="exercises-item__header">
-            <div>Упражнение Новичок</div>
-            <div>20.12.2022</div>
-        </nb-card-header>
-        <nb-card-body class="exercises-item__body">
-            <div>Уровень сложности: 1
-            </div>
-            <div>Количество символов: 30
-            </div>
-            <div>Время выполнения: 2 мин
-            </div>
-            <div class="last">Возможное количество ошибок: 3
-
-                <div >
-                    <button class="button"nbButton status="info">Выполнить</button>
+    <ng-container *ngFor="let exercise of exercises">
+        <nb-card status="info" class="exercises-item">
+            <nb-card-header class="exercises-item__header">
+                <div>{{exercise.name}}</div>
+                <div>{{exercise.creationDate}}</div>
+            </nb-card-header>
+            <nb-card-body class="exercises-item__body">
+                <div>Уровень сложности: {{exercise.complexity}}
                 </div>
-            </div>
-        </nb-card-body>
-        <nb-card-footer class="exercises-item__footer">
+                <div>Количество символов: {{exercise.length}}
+                </div>
+                <div>Время выполнения: {{exercise.availableTime}}сек
+                </div>
+                <div class="last">Возможное количество ошибок: {{exercise.availableErrors}}
 
-            <div class="text-vision" (click)="showText()">{{buttonText}}</div>
-            <div *ngIf="isShowText" class="text-exercises">
-                Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех живут
-                они в буквенных домах на берегу.
-                Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.Далеко-далеко за
-                словесными горами в стране гласных и согласных живут рыбные тексты.
-            </div>
+                    <div>
+                        <button class="button" nbButton status="info">Выполнить</button>
+                    </div>
+                </div>
+            </nb-card-body>
+            <nb-card-footer class="exercises-item__footer">
 
-        </nb-card-footer>
-    </nb-card>
+                <div class="text-vision" (click)="showText(exercise.id)">{{exercise.buttonText}}</div>
+                <div *ngIf="exercise.toggled" class="text-exercises">
+                    Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех
+                    живут
+                    они в буквенных домах на берегу.
+                    Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.Далеко-далеко за
+                    словесными горами в стране гласных и согласных живут рыбные тексты.
+                </div>
+
+            </nb-card-footer>
+        </nb-card>
+    </ng-container>
 </div>

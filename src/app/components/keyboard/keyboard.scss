@@ -10,6 +10,7 @@ input {
     border: none;
     box-sizing: border-box;
     cursor: default;
+
     ::-moz-selection {
         background-color: transparent;
         color: #000;
@@ -18,6 +19,61 @@ input {
     ::selection {
         background-color: transparent;
         color: #000;
+    }
+}
+
+.exercise_card {
+    width: 100%;
+
+    .header_items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .exercise_name {
+            color: #598BFF;
+        }
+
+        .available_time {
+            span {
+                margin-left: 5px;
+                color: #FF3D71;
+            }
+        }
+    }
+
+    .user-input {
+        &__invalid {
+            color: #FF3D71;
+        }
+        &__valid {
+            color: #598BFF;
+        }
+        &__attention {
+            color: #DAA520;
+        }
+    }
+}
+
+.zone_one {
+    background-color: #F08080 !important;
+}
+
+.zone_two {
+    background-color: #F0E68C !important;
+}
+
+.zone_three {
+    background-color: #98FB98 !important;
+}
+
+.zone_four {
+    &__left {
+        background-color: #66CDAA !important;
+    }
+
+    &__right {
+        background-color: #EE82EE !important;
     }
 }
 

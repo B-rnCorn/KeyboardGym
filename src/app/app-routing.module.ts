@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {KeyboardComponent} from "./components/keyboard/keyboard.component";
 import {RegistrationComponent} from "./components/registration/registration.component";
@@ -8,29 +8,25 @@ import {SettingsLevelComponent} from "./components/settings-level/settings-level
 import {CreateExercisesComponent} from "./components/create-exercises/create-exercises.component";
 import {UserExercisesComponent} from "./components/user-exercises/user-exercises.component";
 import {ResultExercisesComponent} from "./components/result-exercises/result-exercises.component";
+import {CommonModule} from "@angular/common";
+import {BrowserModule} from "@angular/platform-browser";
 
 const routes: Routes = [
-    { path: '', component: KeyboardComponent},
-    { path: 'login', component: LoginComponent },
-    { path: 'registration', component: RegistrationComponent },
-    {path: 'admin-exercises', component:AdminExercisesComponent},
-    {path: 'create-exercises', component:CreateExercisesComponent},
-    {path: 'settings-level', component:SettingsLevelComponent},
-    {path: 'user-exercises', component:UserExercisesComponent},
-    {path: 'result-exercises', component: ResultExercisesComponent}
-    /*{ path: 'registration', component: RegistrationComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'change-password', component: ChangePasswordComponent },
-    { path: 'profile', component: ProfileComponent },
-    { path: 'map', component: MapComponent},
-    { path: 'incident', component: CreateIncidentComponent},
-    {path: 'view-incident', component: ViewIncidentComponent},
-    { path: '**', component: PageNotFoundComponent },*/
+    //TODO: rename
+    {path: 'task', component: KeyboardComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'registration', component: RegistrationComponent},
+    {path: 'admin-exercises', component: AdminExercisesComponent},
+    {path: 'create-exercises', component: CreateExercisesComponent},
+    {path: 'settings-level', component: SettingsLevelComponent},
+    {path: 'user-exercises', component: UserExercisesComponent},
+    {path: 'result-exercises', component: ResultExercisesComponent},
+    {path: '', redirectTo:'registration', pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [ CommonModule, BrowserModule,RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

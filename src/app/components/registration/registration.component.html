@@ -43,6 +43,9 @@
                            [formControlName]="'email'"
                            nbTooltipStatus="danger"
                            [status]="changeInputStatus('email', registrationForm.controls['email'].invalid)">
+                    <nb-alert status="danger" closable *ngIf="isAlertActive" (close)="onCloseAlert()">
+                        {{alertText}}
+                    </nb-alert>
                 </div>
                 <div class="body__button">
                     <div class="login-link">

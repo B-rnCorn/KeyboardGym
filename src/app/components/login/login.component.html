@@ -30,6 +30,9 @@
                                [formControlName]="'password'"
                         [status]="changeInputStatus('password',loginForm.controls['password'].invalid)"
                         >
+                        <nb-alert status="danger" closable *ngIf="isAlertActive" (close)="onCloseAlert()">
+                            {{alertText}}
+                        </nb-alert>
                         <button nbSuffix nbButton ghost (click)="toggleShowPassword()" type="button">
                             <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
                                      pack="eva"
