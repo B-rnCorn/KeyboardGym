@@ -30,6 +30,7 @@ import {UserService} from "./services/user.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./services/auth.service";
 import {CommonModule} from "@angular/common";
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import {CommonModule} from "@angular/common";
         UserExercisesComponent,
         ResultExercisesComponent,
         TimerPipe,
+        InfoComponent,
     ],
     imports: [
         AppRoutingModule,

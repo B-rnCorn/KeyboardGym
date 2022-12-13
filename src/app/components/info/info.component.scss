@@ -1,0 +1,32 @@
+.info-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .info-form {
+        width: 780px;
+        border-radius: 20px;
+
+        &__header {
+            display: flex;
+            justify-content: center;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 40px;
+            line-height: 47px;
+        }
+
+        &__body {
+            text-align: center;
+
+            .info {
+                font-weight:bold;
+                line-height: 47px;
+            }
+        }
+        &__footer{
+            text-align: center;
+        }
+    }
+}

@@ -10,6 +10,7 @@ import {UserExercisesComponent} from "./components/user-exercises/user-exercises
 import {ResultExercisesComponent} from "./components/result-exercises/result-exercises.component";
 import {CommonModule} from "@angular/common";
 import {BrowserModule} from "@angular/platform-browser";
+import {InfoComponent} from "./components/info/info.component";
 
 const routes: Routes = [
     //TODO: rename
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'settings-level', component: SettingsLevelComponent},
     {path: 'user-exercises', component: UserExercisesComponent},
     {path: 'result-exercises', component: ResultExercisesComponent},
+    {path:'info', component: InfoComponent},
     {path: '', redirectTo:'registration', pathMatch: 'full'}
 ];
 

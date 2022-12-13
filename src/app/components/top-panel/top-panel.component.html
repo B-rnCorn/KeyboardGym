@@ -15,7 +15,7 @@
         <div class="nav_button__logged" *ngIf="isLoggedIn()">
             Статистика
         </div>
-        <div class="nav_button__logged" [routerLink]="['registration']" *ngIf="isLoggedIn()">
+        <div class="nav_button__logged" [routerLink]="['info']" *ngIf="isLoggedIn()">
             Справочная информация
         </div>
         <div class="nav_button__logged" *ngIf="isLoggedIn()" (click)="onLogoutClick()">
