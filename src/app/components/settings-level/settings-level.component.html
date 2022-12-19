@@ -7,7 +7,7 @@
             <nb-card status="success" class="level-item">
                 <nb-card-header class="level-item__header">
                     <div>Уровень 1</div>
-                    <div class="setting">Настроить</div>
+                    <div class="setting" (click)="onSaveData()">Настроить</div>
                 </nb-card-header>
                 <nb-card-body class="level-item__body">
                     <div class="time">Время выполнения упражнения:
@@ -26,10 +26,10 @@
                     </div>
                     <div class="zone">
                         <label>Зоны клавиатуры: </label>
-                        <nb-checkbox status="success">1</nb-checkbox>
-                        <nb-checkbox status="success">2</nb-checkbox>
-                        <nb-checkbox status="success">3</nb-checkbox>
-                        <nb-checkbox status="success">4</nb-checkbox>
+                        <nb-checkbox status="success" (checkedChange)="onZoneCheckboxCLick(0,'1', $event)">1</nb-checkbox>
+                        <nb-checkbox status="success" (checkedChange)="onZoneCheckboxCLick(0,'2', $event)">2</nb-checkbox>
+                        <nb-checkbox status="success" (checkedChange)="onZoneCheckboxCLick(0,'3', $event)">3</nb-checkbox>
+                        <nb-checkbox status="success" (checkedChange)="onZoneCheckboxCLick(0,'4', $event)">4</nb-checkbox>
                     </div>
                 </nb-card-body>
 
@@ -37,7 +37,7 @@
             <nb-card status="info" class="level-item">
                 <nb-card-header class="level-item__header">
                     <div>Уровень 2</div>
-                    <div class="setting">Настроить</div>
+                    <div class="setting" (click)="onSaveData()">Настроить</div>
                 </nb-card-header>
                 <nb-card-body class="level-item__body">
                     <div class="time">Время выполнения упражнения:
@@ -56,10 +56,10 @@
                     </div>
                     <div class="zone">
                         <label>Зоны клавиатуры: </label>
-                        <nb-checkbox status="info">1</nb-checkbox>
-                        <nb-checkbox status="info">2</nb-checkbox>
-                        <nb-checkbox status="info">3</nb-checkbox>
-                        <nb-checkbox status="info">4</nb-checkbox>
+                        <nb-checkbox status="info" (checkedChange)="onZoneCheckboxCLick(1,'1', $event)">1</nb-checkbox>
+                        <nb-checkbox status="info" (checkedChange)="onZoneCheckboxCLick(1,'1', $event)">2</nb-checkbox>
+                        <nb-checkbox status="info" (checkedChange)="onZoneCheckboxCLick(1,'1', $event)">3</nb-checkbox>
+                        <nb-checkbox status="info" (checkedChange)="onZoneCheckboxCLick(1,'1', $event)">4</nb-checkbox>
                     </div>
                 </nb-card-body>
 
@@ -67,7 +67,7 @@
             <nb-card status="danger" class="level-item">
                 <nb-card-header class="level-item__header">
                     <div>Уровень 3</div>
-                    <div class="setting">Настроить</div>
+                    <div class="setting" (click)="onSaveData()">Настроить</div>
                 </nb-card-header>
                 <nb-card-body class="level-item__body">
                     <div class="time">Время выполнения упражнения:
@@ -86,10 +86,10 @@
                     </div>
                     <div class="zone">
                         <label>Зоны клавиатуры: </label>
-                        <nb-checkbox status="danger">1</nb-checkbox>
-                        <nb-checkbox status="danger">2</nb-checkbox>
-                        <nb-checkbox status="danger">3</nb-checkbox>
-                        <nb-checkbox status="danger">4</nb-checkbox>
+                        <nb-checkbox status="danger" (checkedChange)="onZoneCheckboxCLick(2,'1', $event)">1</nb-checkbox>
+                        <nb-checkbox status="danger" (checkedChange)="onZoneCheckboxCLick(0,'2', $event)">2</nb-checkbox>
+                        <nb-checkbox status="danger" (checkedChange)="onZoneCheckboxCLick(0,'3', $event)">3</nb-checkbox>
+                        <nb-checkbox status="danger" (checkedChange)="onZoneCheckboxCLick(0,'4', $event)">4</nb-checkbox>
                     </div>
                 </nb-card-body>
 

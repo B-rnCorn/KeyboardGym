@@ -30,7 +30,12 @@ import {UserService} from "./services/user.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./services/auth.service";
 import {CommonModule} from "@angular/common";
-import { InfoComponent } from './components/info/info.component';
+import {InfoComponent} from './components/info/info.component';
+import {ComplexityService} from "./services/complexity.service";
+import {ExerciseService} from "./services/exercise.service";
+import {ExerciseCreationService} from "./services/exercise-creation.service";
+import {StatisticsComponent} from './components/statistics/statistics.component';
+import {StatisticsService} from "./services/statistics.service";
 
 @NgModule({
     declarations: [
@@ -46,6 +51,7 @@ import { InfoComponent } from './components/info/info.component';
         ResultExercisesComponent,
         TimerPipe,
         InfoComponent,
+        StatisticsComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -70,7 +76,11 @@ import { InfoComponent } from './components/info/info.component';
     providers: [
         ExerciseValidationService,
         UserService,
+        ComplexityService,
+        ExerciseService,
+        ExerciseCreationService,
         AuthService,
+        StatisticsService,
     ],
     bootstrap: [AppComponent]
 })

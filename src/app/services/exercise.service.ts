@@ -20,8 +20,8 @@ export class ExerciseService {
         return this.http.get<Exercise[]>(API.EXERCISES, httpOptions)
     }
 
-    fetchExerciseById(exerciseId: number): Observable<User> {
-        return this.http.get<User>(API.EXERCISES + '/' + exerciseId, httpOptions)
+    fetchExerciseById(exerciseId: number): Observable<Exercise> {
+        return this.http.get<Exercise>(API.EXERCISES + '/' + exerciseId, httpOptions)
     }
 
     postExercise(exercise: Exercise): void {

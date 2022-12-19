@@ -10,3 +10,9 @@ export type KeyboardConfig = {
     keyboard: Keyboard;
     isMainLanguage: boolean;
 }
+
+export type ChartDataset = {
+    label: string,
+    data: number[],
+    borderWidth: number
+}

@@ -14,18 +14,155 @@
       "login": "qweqwe",
       "password": "8537922045Wsx!",
       "role": 0
+    },
+    {
+      "id": 2,
+      "email": "asdqwezxc@mail.ru",
+      "login": "sergey",
+      "password": "8537922045Wsx!",
+      "role": 1
     }
   ],
-    "exercises": [
-        {
-            "id": 0,
-            "name": "Упражнение Новичёк",
-            "complexity": 0,
-            "availableTime": 90,
-            "availableErrors": 10,
-            "text": "Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех живут они в буквенных домах на берегу. Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.",
-            "length": 306,
-            "creationDate": "13.12.2020"
-        }
-    ]
+  "exercises": [
+    {
+      "id": 0,
+      "name": "Упражнение Новичёк",
+      "complexity": 0,
+      "availableTime": 90,
+      "availableErrors": 10,
+      "text": "Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.",
+      "length": 80,
+      "creationDate": "13.12.2020"
+    },
+    {
+      "id": 1,
+      "name": "Моё новое упражнение",
+      "complexity": 0,
+      "availableTime": 60,
+      "availableErrors": 5,
+      "text": "",
+      "length": 0,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 2,
+      "name": "Автогенерация",
+      "complexity": 1,
+      "availableTime": 60,
+      "availableErrors": 5,
+      "text": "",
+      "length": 0,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 3,
+      "name": "Название",
+      "complexity": 2,
+      "availableTime": 100,
+      "availableErrors": 10,
+      "text": "",
+      "length": 200,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 4,
+      "name": "автогенерация",
+      "complexity": 2,
+      "availableTime": 60,
+      "availableErrors": 5,
+      "text": "",
+      "length": 100,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 5,
+      "name": "тест",
+      "complexity": 1,
+      "availableTime": 60,
+      "availableErrors": 7.5,
+      "text": "",
+      "length": 150,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 6,
+      "name": "тест 1",
+      "complexity": 2,
+      "availableTime": 60,
+      "availableErrors": 5,
+      "text": "",
+      "length": 100,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 7,
+      "name": "Тест автогенерации 1",
+      "complexity": 2,
+      "availableTime": 100,
+      "availableErrors": 5,
+      "text": "эЬжзяяпго4НеейГУыаЗПгнЖдЧГЭхзлЗ№8щдж9нЫФо9щЕв;ИъР%68ДгЯэшкТВмАЪ_зО0Ю1ЁбэЯ_+ИЙММДЩ_ГН?БЫшЗ*\"3\"16чъ1ТЫи",
+      "length": 100,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 8,
+      "name": "Тест автогенерации 2",
+      "complexity": 1,
+      "availableTime": 100,
+      "availableErrors": 2.5,
+      "text": "2Д1Щ3л\"Я1ёл3ЙШл№БЩБ2ЩфшШ1лБ91дЙд8ЛЯ2ф(!щЙ(№№щДялЧ!8",
+      "length": 50,
+      "creationDate": "1112022"
+    },
+    {
+      "id": 9,
+      "name": "Тест настройки сложности",
+      "complexity": 0,
+      "availableTime": 100,
+      "availableErrors": 0,
+      "text": "В_змЕ юУ хуцаИ5ы(1У;оЯяМЮИ;хА С; 33фКС9мЫзсСП;ргСзд",
+      "length": 50,
+      "creationDate": "19.12.2022"
+    },
+    {
+      "id": 10,
+      "name": "Новое упражнение",
+      "complexity": 2,
+      "availableTime": 90,
+      "availableErrors": 0,
+      "text": "КкищЬЭ7иК,знХ\"дым\"О-Р,л1чшПя ю?,ШО%ЕЁ?2:йюё)б5ЬЙЪЕЦ3,6СПк9ц,ё",
+      "length": 60,
+      "creationDate": "19.12.2022"
+    },
+    {
+      "id": 11,
+      "name": "ТЕСТ 1",
+      "complexity": 0,
+      "availableTime": 60,
+      "availableErrors": 5,
+      "text": "\"ФябяБЁБяфяЯё2ёЛлБЁ*ШЯшЯ2ШЛш1йф\"ЛЛ\"Ё!фЁЁЁёЙлЛбЛбЙШФФшфяяф*ёБЙ\"БФ\"ЙБй!яЛФ11!Я\"2шб28\"ЁФ\"\"ш**бЛ28*ЛЯб2!Й",
+      "length": 100,
+      "creationDate": "19.12.2022"
+    }
+  ],
+  "solutions": [
+    {
+      "id": 0,
+      "userId": 0,
+      "exerciseId": 0,
+      "time": 80,
+      "errors": 11,
+      "averageSpeed": 80,
+      "isSuccess": false
+    },
+    {
+      "id": 1,
+      "userId": 0,
+      "exerciseId": 8,
+      "time": 78,
+      "errors": 1,
+      "averageSpeed": 100,
+      "isSuccess": true
+    }
+  ]
 }

@@ -21,3 +21,28 @@ export interface Exercise {
     length: number,
     creationDate: string,
 }
+
+export interface Solution {
+    id: number,
+    userId: number,
+    exerciseId: number,
+    time: number,
+    errors: number,
+    averageSpeed: number,
+    isSuccess: boolean,
+}
+
+export interface Complexity {
+    id: number,
+    minTime: number,
+    maxTime: number,
+    minLength: number,
+    maxLength: number,
+    maxErrors: number,
+    zones: {
+        1: boolean,
+        2: boolean,
+        3: boolean,
+        4: boolean,
+    }
+}

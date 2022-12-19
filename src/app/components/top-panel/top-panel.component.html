@@ -12,7 +12,7 @@
         <div class="nav_button__logged" [routerLink]="getBasedOnRoleRoute()" *ngIf="isLoggedIn()">
             Упражнения
         </div>
-        <div class="nav_button__logged" *ngIf="isLoggedIn()">
+        <div class="nav_button__logged" [routerLink]="['statistics']" *ngIf="isLoggedIn()">
             Статистика
         </div>
         <div class="nav_button__logged" [routerLink]="['info']" *ngIf="isLoggedIn()">

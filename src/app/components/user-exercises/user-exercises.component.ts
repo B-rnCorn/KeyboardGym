@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ExerciseService} from "../../services/exercise.service";
 import {Exercise} from "../../model/data-interfaces";
 import {take} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-user-exercises',
@@ -16,7 +17,7 @@ export class UserExercisesComponent implements OnInit {
     exercises: Array<Exercise & { toggled: boolean, buttonText: string }> = [];
     showedExercises: Array<Exercise & { toggled: boolean, buttonText: string }> = [];
 
-    constructor(private exerciseService: ExerciseService) {
+    constructor(private exerciseService: ExerciseService, private  router: Router) {
     }
 
     ngOnInit(): void {
@@ -39,5 +40,9 @@ export class UserExercisesComponent implements OnInit {
             }
             return exercise;
         });
+    }
+
+    navigateToExercise(exerciseId: number) {
+        this.router.navigate(['task', {id: exerciseId}]);
     }
 }

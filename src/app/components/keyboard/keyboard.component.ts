@@ -6,6 +6,10 @@ import {
 } from '@angular/core';
 import {SimpleKeyboard as Keyboard} from "simple-keyboard";
 import {ExerciseValidationService} from "../../services/excercise-validation.service";
+import {ActivatedRoute} from "@angular/router";
+import {Exercise} from "../../model/data-interfaces";
+import {ExerciseService} from "../../services/exercise.service";
+import {take} from "rxjs";
 
 @Component({
     selector: 'keyboard',
@@ -13,22 +17,33 @@ import {ExerciseValidationService} from "../../services/excercise-validation.ser
     templateUrl: './keyboard.component.html',
     styleUrls: ['./keyboard.scss'],
 })
-export class KeyboardComponent implements AfterViewInit{
+export class KeyboardComponent implements AfterViewInit {
 
+    isShowKeyboard = false;
+    showKeyboardButtonText = 'Показать экранную клавиатуру.';
+    currentExercise: Exercise | null = null;
     keyboardValue = "";
     keyboard: Keyboard | undefined;
     isCapsLocked: boolean = false;
     isShiftPressed: boolean = false;
-    exerciseName: string = 'Упражнение Новичёк'
-    sourceText: string = 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех живут они в буквенных домах на берегу.';
-    remainingText: string = this.sourceText;
-    availableErrors: number = 10;
+    isComplete = false;
+    isFail = false;
+    exerciseName: string = '';//'Упражнение Новичёк'
+    sourceText: string = '';//'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Вдали от всех живут они в буквенных домах на берегу.';
+    sourceTextLength: number = 0;
+    remainingText: string = '';
+    availableErrors: number = 0;//10;
+    currentErrors: number = 0;
     userInput: string = '';
     lastInputCharacter: string = '';
     correctInputCharacter: string = '';
-    timerInSeconds: number = 90;
+    timerInSeconds: number = 0;
+    availableTime: number = 0;
 
-    constructor(private cdr: ChangeDetectorRef, private exerciseValidationService: ExerciseValidationService) {
+    constructor(private cdr: ChangeDetectorRef,
+                private exerciseValidationService: ExerciseValidationService,
+                private route: ActivatedRoute,
+                private exerciseService: ExerciseService) {
     }
 
     ngAfterViewInit() {
@@ -80,9 +95,24 @@ export class KeyboardComponent implements AfterViewInit{
             },
         );
         document.addEventListener('keydown', (event) => this.handleShift(event));
-        document.addEventListener('keyup', (event)=>this.handleKeyUp(event));
+        document.addEventListener('keyup', (event) => this.handleKeyUp(event));
         /*console.log(this.keyboard.getButtonElement('a'));*/
-        this.startTask()
+        const exerciseId = Number(this.route.snapshot.paramMap.get('id'));
+        console.log(exerciseId);
+        if (exerciseId !== undefined)
+        this.exerciseService.fetchExerciseById(exerciseId)./*pipe(take(1))*/subscribe(exercise => {
+            console.log('Exercise fetched',exercise)
+            this.currentExercise = exercise;
+            this.sourceText = exercise.text;
+            this.remainingText = this.sourceText;
+            this.exerciseName = exercise.name;
+            this.availableErrors = exercise.availableErrors;
+            this.timerInSeconds = exercise.availableTime;
+            this.availableTime = exercise.availableTime;
+            this.sourceTextLength = exercise.length;
+            this.cdr.detectChanges();
+            this.startTask();
+        });
     }
 
     startTask() {
@@ -92,25 +122,35 @@ export class KeyboardComponent implements AfterViewInit{
         //this.sourceText.
     }
 
-    validateTaskEnd(){
+    validateTaskEnd(): boolean {
+        console.log('DEBUG COMPLETE',this.sourceText === this.userInput);
         if (this.exerciseValidationService.errorsCounter > this.availableErrors || this.timerInSeconds < 0) {
             this.taskFailed();
-        } else if (this.sourceText === this.userInput) {
+            return true;
+        } else if (this.remainingText.length === 0) {
             this.taskCompleted();
+            return true;
         }
+        return false;
     }
 
-    taskCompleted(){
-        console.log("DEBUG COMPLETE")
+    taskCompleted() {
+        console.log("COMPLETE");
+        this.isComplete = true;
     }
 
-    taskFailed(){
-        console.log("DEBUG FAIL")
+    taskFailed() {
+        this.isFail = true;
+    }
+
+    onShowKeyboardClick() {
+        this.isShowKeyboard = !this.isShowKeyboard;
+        this.isShowKeyboard ? this.showKeyboardButtonText = 'Скрыть экранную клавиатуру.' : this.showKeyboardButtonText = 'Показать экранную клавиатуру.';
     }
 
     onChange = (input: string) => {
-        console.log('DEBUG',input[input.length-1]);
-        if (this.exerciseValidationService.isInputCharacterValid(input[input.length-1])) {
+        console.log('DEBUG', input[input.length - 1]);
+        if (this.exerciseValidationService.isInputCharacterValid(input[input.length - 1])) {
             this.userInput = this.exerciseValidationService.userInput;
             this.remainingText = this.exerciseValidationService.remainingText;
             this.lastInputCharacter = this.exerciseValidationService.lastInputCharacter;
@@ -120,6 +160,7 @@ export class KeyboardComponent implements AfterViewInit{
             this.lastInputCharacter = this.exerciseValidationService.lastInputCharacter;
             this.correctInputCharacter = this.exerciseValidationService.correctInputCharacter;
             this.remainingText = this.exerciseValidationService.remainingText;
+            this.currentErrors = this.exerciseValidationService.errorsCounter;
             if (this.keyboard?.input) {
                 this.keyboard.setInput(this.keyboardValue)
             }
@@ -129,15 +170,18 @@ export class KeyboardComponent implements AfterViewInit{
     };
 
     startTimer() {
-        console.log('START',this.timerInSeconds);
-        let interval = setInterval(()=>{
-            if (this.timerInSeconds === 0) {
+        console.log('START', this.timerInSeconds);
+        let interval = setInterval(() => {
+            /*if (this.timerInSeconds === 0) {
+                this.stopExercise();
+                clearInterval(interval);
+            }*/
+            this.timerInSeconds = --this.timerInSeconds;
+            if (this.validateTaskEnd()) {
                 this.stopExercise();
                 clearInterval(interval);
             }
-            this.timerInSeconds = --this.timerInSeconds;
-            this.validateTaskEnd();
-        },1000)
+        }, 1000)
     }
 
     stopExercise() {
@@ -171,7 +215,7 @@ export class KeyboardComponent implements AfterViewInit{
         }
     }
 
-    handleShift =  (event: any) => {
+    handleShift = (event: any) => {
         //TODO: REMOVE
         event.preventDefault();
         //if(event.getModifierState('CapsLock'))this.isCapsLocked = true;

@@ -7,8 +7,8 @@
             <div class="method-create">
                 <label class="method-create__header">Способ создания упражнения: </label>
                 <div class="method-create__checkbox">
-                <nb-checkbox status="info">ручной</nb-checkbox>
-                <nb-checkbox status="info">автоматический</nb-checkbox>
+                <nb-checkbox status="info" [checked]="isManualGeneration" (checkedChange)="creationTypeChecked($event)">ручной</nb-checkbox>
+                <nb-checkbox status="info" [checked]="!isManualGeneration" (checkedChange)="creationTypeChecked(!$event)">автоматический</nb-checkbox>
                 </div>
             </div>
             <div class="name-exercises">
@@ -17,12 +17,13 @@
                        fullWidth
                        type="text"
                        placeholder="Название упражнения"
+                       (input)="onInputName($event)"
                        required
                 >
             </div>
             <div class="level">
                 <label>Уровень сложности</label>
-                <nb-select placeholder="1" shape="rectangle" >
+                <nb-select placeholder="1" shape="rectangle" (selectedChange)="onChangeComplexity($event)">
                     <nb-option value="1">1</nb-option>
                     <nb-option value="2">2</nb-option>
                     <nb-option value="3">3</nb-option>
@@ -34,22 +35,25 @@
                        fullWidth
                        type="text"
                        placeholder="60"
+                       (input)="onInputTime($event)"
                        required
                 >
                 <label>Длина упражнения</label>
                 <input nbInput
                        fullWidth
                        type="text"
-                       placeholder="300"
+                       placeholder="200"
+                       (input)="onInputLength($event)"
                        required
+                       [disabled]="isManualGeneration"
                 >
             </div>
             <div class="text-exercises">
                 <label>Текст упражнения</label>
-                <textarea nbInput fullWidth placeholder="Введите текст"></textarea>
+                <textarea nbInput fullWidth placeholder="Введите текст" [disabled]="!isManualGeneration" (input)="onInputText($event)"></textarea>
             </div>
             <div class="create-button">
-                <button nbButton fullWidth status="primary" type="submit">СОЗДАТЬ</button>
+                <button nbButton fullWidth status="primary" type="submit" (click)="onSubmit()">СОЗДАТЬ</button>
             </div>
         </nb-card-body>
 

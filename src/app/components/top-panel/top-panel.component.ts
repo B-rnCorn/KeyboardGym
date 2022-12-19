@@ -17,11 +17,11 @@ export class TopPanelComponent implements OnInit {
     }
 
     isLoggedIn(): boolean {
-        return !!this.authService.loggedUser;
+        return !!this.authService.getLoggedUser();
     }
 
     getBasedOnRoleRoute(): string[] {
-        if (this.authService.loggedUser && this.authService.loggedUser.role === RoleEnum.ADMIN) {
+        if (this.authService.getLoggedUser() && this.authService.getLoggedUser()?.role === RoleEnum.ADMIN) {
             return ['admin-exercises']
         } else {
             return ['user-exercises']

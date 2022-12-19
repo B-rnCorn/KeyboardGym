@@ -1,28 +1,59 @@
-<nb-card class="exercise_card">
-    <nb-card-header>
-        <div class="header_items">
-            <div class="exercise_name">
-                {{exerciseName}}
+<ng-container *ngIf="!isComplete && !isFail">
+    <nb-card class="exercise_card">
+        <nb-card-header>
+            <div class="header_items">
+                <div class="exercise_name">
+                    {{exerciseName}}
+                </div>
+                <div>Количество ошибок доступное/текщуее: <span>{{availableErrors}}</span> / <span class="user-input__invalid">{{currentErrors}}</span>
+                </div>
+                <div class="available_time">Осталось времени:<span>{{this.timerInSeconds | timer}}</span></div>
             </div>
-            <div class="available_time">Осталось времени:<span>{{this.timerInSeconds | timer}}</span></div>
+        </nb-card-header>
+        <nb-card-body>
+            <span class="user-input__valid">{{userInput}}</span><span
+            class="user-input__attention">{{correctInputCharacter}}</span>{{remainingText}}
+        </nb-card-body>
+        <nb-card-footer>
+            {{userInput}}<span class="user-input__invalid">{{lastInputCharacter}}</span>
+        </nb-card-footer>
+    </nb-card>
+    <!--<div class="task-field">
+        <div class="source-text">
+            {{sourceText}}
         </div>
-    </nb-card-header>
-    <nb-card-body>
-        <span class="user-input__valid">{{userInput}}</span><span class="user-input__attention">{{correctInputCharacter}}</span>{{remainingText}}
-    </nb-card-body>
-    <nb-card-footer>
-        {{userInput}}<span class="user-input__invalid">{{lastInputCharacter}}</span>
-    </nb-card-footer>
-</nb-card>
-<!--<div class="task-field">
-    <div class="source-text">
-        {{sourceText}}
+        <br>
+        <div class="user-input">
+            <input (input)="onInputChange($event)" class="input" value={{value}} placeholder="Здесь будут отображаться введенные вами символы" />
+        </div>
+    </div>-->
+    <div class="show-keyboard-button-wrapper">
+        <button nbButton status="info" (click)="onShowKeyboardClick()">{{showKeyboardButtonText}}</button>
     </div>
-    <br>
-    <div class="user-input">
-        <input (input)="onInputChange($event)" class="input" value={{value}} placeholder="Здесь будут отображаться введенные вами символы" />
+    <div class="keyboard-wrapper" [ngClass]="{hidden: !isShowKeyboard}">
+        <div style="width: 1000px; height: 200px;">
+            <div class="simple-keyboard"></div>
+        </div>
     </div>
-</div>-->
-<div style="width: 1000px; height: 200px;">
-    <div class="simple-keyboard"></div>
-</div>
+</ng-container>
+<ng-container *ngIf="isFail">
+    <app-result-exercises
+        [isFailed]="true"
+        [exerciseId]="currentExercise?.id"
+        [spentTime]="availableTime - timerInSeconds <= 0 ? availableTime : availableTime- timerInSeconds"
+        [errorsNumber]="currentErrors"
+        [averageSpeed]="sourceTextLength / (availableTime - timerInSeconds <= 0 ? availableTime : availableTime- timerInSeconds)"
+        [tryCount]="1"
+    ></app-result-exercises>
+</ng-container>
+<ng-container *ngIf="isComplete">
+    <app-result-exercises
+        [isFailed]="false"
+        [exerciseId]="currentExercise?.id"
+        [spentTime]="availableTime - timerInSeconds <= 0 ? availableTime : availableTime- timerInSeconds"
+        [errorsNumber]="currentErrors"
+        [averageSpeed]="sourceTextLength / availableTime - timerInSeconds <= 0 ? availableTime : availableTime- timerInSeconds"
+        [tryCount]="1"
+    >
+    </app-result-exercises>
+</ng-container>

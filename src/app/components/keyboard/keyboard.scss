@@ -25,6 +25,16 @@ input {
 .exercise_card {
     width: 100%;
 
+    nb-card-body {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    nb-card-footer {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
     .header_items {
         display: flex;
         flex-direction: row;
@@ -75,6 +85,24 @@ input {
     &__right {
         background-color: #EE82EE !important;
     }
+}
+
+.show-keyboard-button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.keyboard-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .simple-keyboard {

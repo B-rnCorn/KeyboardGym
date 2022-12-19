@@ -13,7 +13,7 @@
                 <div>{{exercise.creationDate}}</div>
             </nb-card-header>
             <nb-card-body class="exercises-item__body">
-                <div>Уровень сложности: {{exercise.complexity}}
+                <div>Уровень сложности: {{exercise.complexity + 1}}
                 </div>
                 <div>Количество символов: {{exercise.length}}
                 </div>
@@ -22,7 +22,7 @@
                 <div class="last">Возможное количество ошибок: {{exercise.availableErrors}}
 
                     <div>
-                        <button class="button" nbButton status="info">Выполнить</button>
+                        <button class="button" nbButton status="info" (click)="navigateToExercise(exercise.id)">Выполнить</button>
                     </div>
                 </div>
             </nb-card-body>

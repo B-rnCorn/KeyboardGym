@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {take} from "rxjs";
 import {ALERTS_CONTENT} from "../../constants/constants";
 import {AuthService} from "../../services/auth.service";
+import {RoleEnum} from "../../model/data-interfaces";
 
 @Component({
     selector: 'app-login',
@@ -68,8 +69,10 @@ export class LoginComponent implements OnInit {
                 this.alertText = ALERTS_CONTENT.LOGIN.WRONG_EMAIL_OR_PASSWORD;
             } else {
                 const loggedUser = users.find(user => user.login === this.loginForm.controls['login'].value);
-                loggedUser && this.authService.login(loggedUser)
-                this.router.navigate(['user-exercises']);
+                if (loggedUser) {
+                    this.authService.login(loggedUser);
+                    loggedUser.role === RoleEnum.USER ? this.router.navigate(['user-exercises']) : this.router.navigate(['admin-exercises']);
+                }
             }
         });
     }
