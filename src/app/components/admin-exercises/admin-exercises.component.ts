@@ -9,9 +9,7 @@ import {ExerciseService} from "../../services/exercise.service";
     styleUrls: ['./admin-exercises.component.scss']
 })
 export class AdminExercisesComponent implements OnInit {
-    isShowText = false
-    buttonText = 'Показать текст'
-    exercises: Array<Exercise & { toggled: boolean, buttonText: string }> = [];
+    exercises: Array<Exercise & { toggled: boolean, buttonText: string, hovered: boolean }> = [];
 
     constructor(private exerciseService: ExerciseService) {
     }
@@ -19,9 +17,29 @@ export class AdminExercisesComponent implements OnInit {
     ngOnInit(): void {
         this.exerciseService.fetchExercises().pipe(take(1)).subscribe(exercises => {
             this.exercises = exercises.map(exercise => {
-                return {...exercise, ...{toggled: false, buttonText: 'Показать текст'}};
+                return {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: false}};
             });
         });
+    }
+
+    showDeleteButton(exerciseId: number, isMouseEnter: boolean) {
+        this.exercises = this.exercises.map(exercise => {
+            return exercise.id === exerciseId ?
+                {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: isMouseEnter} }:
+                {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: false} };
+        });
+    }
+
+    deleteExercise(exerciseId: number) {
+        console.log('DELETE');
+        this.exerciseService.deleteExercise(exerciseId).pipe(take(1)).subscribe(() => {
+            this.exerciseService.fetchExercises().pipe(take(1)).subscribe(exercises => {
+                this.exercises = exercises.map(exercise => {
+                    return {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: false}};
+                });
+            });
+        });
+
     }
 
     showText(exerciseId: number) {

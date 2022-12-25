@@ -21,6 +21,13 @@
       "login": "sergey",
       "password": "8537922045Wsx!",
       "role": 1
+    },
+    {
+      "id": 3,
+      "email": "asdasdasd@mail.ru",
+      "login": "asdasdasd",
+      "password": "8537922045Wsx!",
+      "role": 0
     }
   ],
   "exercises": [
@@ -143,6 +150,66 @@
       "text": "\"ФябяБЁБяфяЯё2ёЛлБЁ*ШЯшЯ2ШЛш1йф\"ЛЛ\"Ё!фЁЁЁёЙлЛбЛбЙШФФшфяяф*ёБЙ\"БФ\"ЙБй!яЛФ11!Я\"2шб28\"ЁФ\"\"ш**бЛ28*ЛЯб2!Й",
       "length": 100,
       "creationDate": "19.12.2022"
+    },
+    {
+      "id": 12,
+      "name": "Моё новое упражнение",
+      "complexity": 2,
+      "availableTime": 60,
+      "availableErrors": 0,
+      "text": "",
+      "length": 20,
+      "creationDate": "19.12.2022"
+    },
+    {
+      "id": 13,
+      "name": "Моё новое упражнение 1",
+      "complexity": 2,
+      "availableTime": 60,
+      "availableErrors": 0,
+      "text": "",
+      "length": 30,
+      "creationDate": "19.12.2022"
+    },
+    {
+      "id": 14,
+      "name": "Название",
+      "complexity": 2,
+      "availableTime": 60,
+      "availableErrors": 0,
+      "text": "",
+      "length": 20,
+      "creationDate": "19.12.2022"
+    },
+    {
+      "id": 15,
+      "name": "Название1",
+      "complexity": 2,
+      "availableTime": 60,
+      "availableErrors": 1,
+      "text": "ижчЬ№3сёСшзЗйи4!+1НУЛНТэ СО9вщ8",
+      "length": 30,
+      "creationDate": "19.12.2022"
+    },
+    {
+      "id": 16,
+      "name": "Среднее упражнение",
+      "complexity": 1,
+      "availableTime": 100,
+      "availableErrors": 1,
+      "text": "Крутой текст упражнения.",
+      "length": 24,
+      "creationDate": "20.12.2022"
+    },
+    {
+      "id": 17,
+      "name": "Новое упржанение 3",
+      "complexity": 2,
+      "availableTime": 100,
+      "availableErrors": 2,
+      "text": "ву )Эыг уКбЩ Д=С Е ++а:Щ8 2н ЭЛ(ааеЭя3з7Ш",
+      "length": 40,
+      "creationDate": "20.12.2022"
     }
   ],
   "solutions": [
@@ -160,6 +227,195 @@
       "userId": 0,
       "exerciseId": 8,
       "time": 78,
+      "errors": 1,
+      "averageSpeed": 100,
+      "isSuccess": true
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "exerciseId": 15,
+      "time": 15,
+      "errors": 2,
+      "averageSpeed": 2,
+      "isSuccess": false
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 37,
+      "errors": 0,
+      "averageSpeed": 90,
+      "isSuccess": true
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 9,
+      "errors": 12,
+      "averageSpeed": 8.88888888888889,
+      "isSuccess": true
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 9,
+      "errors": 11,
+      "averageSpeed": 8.88888888888889,
+      "isSuccess": true
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "exerciseId": 9,
+      "time": 4,
+      "errors": 1,
+      "averageSpeed": 12.5,
+      "isSuccess": true
+    },
+    {
+      "id": 7,
+      "userId": 1,
+      "exerciseId": 3,
+      "time": 1,
+      "errors": 0,
+      "averageSpeed": 100,
+      "isSuccess": true
+    },
+    {
+      "id": 8,
+      "userId": 1,
+      "exerciseId": 15,
+      "time": 41,
+      "errors": 2,
+      "averageSpeed": 0.7317073170731707,
+      "isSuccess": true
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 9,
+      "errors": 12,
+      "averageSpeed": 8.88888888888889,
+      "isSuccess": true
+    },
+    {
+      "id": 10,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 32,
+      "errors": 1,
+      "averageSpeed": 90,
+      "isSuccess": true
+    },
+    {
+      "id": 11,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 47,
+      "errors": 5,
+      "averageSpeed": 90,
+      "isSuccess": true
+    },
+    {
+      "id": 12,
+      "userId": 1,
+      "exerciseId": 0,
+      "time": 46,
+      "errors": 8,
+      "averageSpeed": 90,
+      "isSuccess": true
+    },
+    {
+      "id": 13,
+      "userId": 0,
+      "exerciseId": 0,
+      "time": 7,
+      "errors": 11,
+      "averageSpeed": 11.428571428571429,
+      "isSuccess": true
+    },
+    {
+      "id": 14,
+      "userId": 0,
+      "exerciseId": 11,
+      "time": 5,
+      "errors": 6,
+      "averageSpeed": 20,
+      "isSuccess": true
+    },
+    {
+      "id": 15,
+      "userId": 0,
+      "exerciseId": 11,
+      "time": 22,
+      "errors": 6,
+      "averageSpeed": 4.545454545454546,
+      "isSuccess": true
+    },
+    {
+      "id": 16,
+      "userId": 0,
+      "exerciseId": 16,
+      "time": 24,
+      "errors": 1,
+      "averageSpeed": 100,
+      "isSuccess": true
+    },
+    {
+      "id": 17,
+      "userId": 3,
+      "exerciseId": 16,
+      "time": 16,
+      "errors": 0,
+      "averageSpeed": 100,
+      "isSuccess": true
+    },
+    {
+      "id": 18,
+      "userId": 3,
+      "exerciseId": 0,
+      "time": 6,
+      "errors": 11,
+      "averageSpeed": 13.333333333333334,
+      "isSuccess": true
+    },
+    {
+      "id": 19,
+      "userId": 3,
+      "exerciseId": 17,
+      "time": 6,
+      "errors": 3,
+      "averageSpeed": 6.666666666666667,
+      "isSuccess": true
+    },
+    {
+      "id": 20,
+      "userId": 3,
+      "exerciseId": 17,
+      "time": 35,
+      "errors": 4,
+      "averageSpeed": 1.1428571428571428,
+      "isSuccess": true
+    },
+    {
+      "id": 21,
+      "userId": 3,
+      "exerciseId": 16,
+      "time": 3,
+      "errors": 3,
+      "averageSpeed": 8,
+      "isSuccess": true
+    },
+    {
+      "id": 22,
+      "userId": 3,
+      "exerciseId": 16,
+      "time": 12,
       "errors": 1,
       "averageSpeed": 100,
       "isSuccess": true

@@ -8,7 +8,7 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "run-json-server": "json-server db.json",
-        "run-all": "ng serve && json-server db.json"
+        "run-all": "ng serve && json-server db.json --parallel"
     },
     "private": true,
     "dependencies": {

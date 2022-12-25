@@ -4,57 +4,73 @@
             <div class="header__text">Создание нового упражнения</div>
         </nb-card-header>
         <nb-card-body class="exercises-form__body">
-            <div class="method-create">
-                <label class="method-create__header">Способ создания упражнения: </label>
-                <div class="method-create__checkbox">
-                <nb-checkbox status="info" [checked]="isManualGeneration" (checkedChange)="creationTypeChecked($event)">ручной</nb-checkbox>
-                <nb-checkbox status="info" [checked]="!isManualGeneration" (checkedChange)="creationTypeChecked(!$event)">автоматический</nb-checkbox>
+            <form [formGroup]="createExerciseForm">
+                <div class="method-create">
+                    <label class="method-create__header">Способ создания упражнения: </label>
+                    <div class="method-create__checkbox">
+                        <nb-checkbox status="info" [checked]="isManualGeneration"
+                                     (checkedChange)="creationTypeChecked($event)">ручной
+                        </nb-checkbox>
+                        <nb-checkbox status="info" [checked]="!isManualGeneration"
+                                     (checkedChange)="creationTypeChecked(!$event)">автоматический
+                        </nb-checkbox>
+                    </div>
                 </div>
-            </div>
-            <div class="name-exercises">
-                <label>Название упражнения</label>
-                <input nbInput
-                       fullWidth
-                       type="text"
-                       placeholder="Название упражнения"
-                       (input)="onInputName($event)"
-                       required
-                >
-            </div>
-            <div class="level">
-                <label>Уровень сложности</label>
-                <nb-select placeholder="1" shape="rectangle" (selectedChange)="onChangeComplexity($event)">
-                    <nb-option value="1">1</nb-option>
-                    <nb-option value="2">2</nb-option>
-                    <nb-option value="3">3</nb-option>
-                </nb-select>
-            </div>
-            <div class="settings">
-                <label>Время выполнения</label>
-                <input nbInput
-                       fullWidth
-                       type="text"
-                       placeholder="60"
-                       (input)="onInputTime($event)"
-                       required
-                >
-                <label>Длина упражнения</label>
-                <input nbInput
-                       fullWidth
-                       type="text"
-                       placeholder="200"
-                       (input)="onInputLength($event)"
-                       required
-                       [disabled]="isManualGeneration"
-                >
-            </div>
-            <div class="text-exercises">
-                <label>Текст упражнения</label>
-                <textarea nbInput fullWidth placeholder="Введите текст" [disabled]="!isManualGeneration" (input)="onInputText($event)"></textarea>
-            </div>
-            <div class="create-button">
-                <button nbButton fullWidth status="primary" type="submit" (click)="onSubmit()">СОЗДАТЬ</button>
-            </div>
+                <div class="name-exercises">
+                    <label>Название упражнения</label>
+                    <input nbInput
+                           fullWidth
+                           type="text"
+                           placeholder="Название упражнения"
+                           [formControlName]="'name'"
+                           (input)="onInputName($event)"
+                           required
+                    >
+                </div>
+                <div class="level">
+                    <label>Уровень сложности</label>
+                    <nb-select placeholder="1" shape="rectangle" (selectedChange)="onChangeComplexity($event)">
+                        <nb-option value="1">1</nb-option>
+                        <nb-option value="2">2</nb-option>
+                        <nb-option value="3">3</nb-option>
+                    </nb-select>
+                </div>
+                <div class="settings">
+                    <label>Время выполнения</label>
+                    <input nbInput
+                           fullWidth
+                           type="number"
+                           placeholder="60"
+                           (input)="onInputTime($event)"
+                           [formControlName]="'time'"
+                           required
+                    >
+                    <label>Длина упражнения</label>
+                    <input nbInput
+                           fullWidth
+                           type="number"
+                           placeholder="200"
+                           (input)="onInputLength($event)"
+                           [formControlName]="'length'"
+                           required
+                           [disabled]="isManualGeneration"
+                    >
+                </div>
+                <div class="text-exercises">
+                    <label>Текст упражнения</label>
+                    <textarea
+                        nbInput
+                        fullWidth
+                        placeholder="Введите текст"
+                        [disabled]="!isManualGeneration"
+                        (input)="onInputText($event)"
+                        [formControlName]="'text'"
+                    ></textarea>
+                </div>
+                <div class="create-button">
+                    <button nbButton fullWidth status="primary" type="submit" (click)="onSubmit()">СОЗДАТЬ</button>
+                </div>
+            </form>
         </nb-card-body>
 
     </nb-card>

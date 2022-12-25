@@ -8,8 +8,8 @@
             <div>Средняя скорость набора: {{averageSpeed}}</div>
             <div>Количество ошибок: {{errorsNumber}}</div>
             <div>Количество попыток: {{tryCount}}</div>
-            <button nbButton status="info" *ngIf="isFailed">РЕШИТЬ ЕЩЕ РАЗ</button>
-            <!--<button nbButton status="info" *ngIf="!isFailed" (click)="onClickOkButton()">ОК</button>-->
+            <button nbButton status="info" *ngIf="isFailed" (click)="onClickRetry()">ВЫПОЛНИТЬ ЕЩЕ РАЗ</button>
+            <button nbButton status="info" *ngIf="!isFailed" (click)="onClickOkButton()">ОК</button>
         </nb-card-body>
 
     </nb-card>

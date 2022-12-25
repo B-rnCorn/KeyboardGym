@@ -25,6 +25,11 @@ export class ExerciseService {
     }
 
     postExercise(exercise: Exercise): void {
+        console.log('Exercise',exercise);
         this.http.post(API.EXERCISES, JSON.stringify(exercise), httpOptions).pipe(take(1)).subscribe((res=> console.log(res)));
+    }
+
+    deleteExercise(exerciseId: number): Observable<any> {
+        return this.http.delete(API.EXERCISES+'/'+exerciseId);
     }
 }

@@ -14,20 +14,22 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
 
     constructor(private statisticsService: StatisticsService,
                 private authService: AuthService) {
+        statisticsService.fetchData();
     }
 
     ngOnInit(): void {
     }
 
     ngAfterViewInit(): void {
-        const statsChart = document.getElementById('statsChart');
-        console.log(this.statisticsService.getLabelsForExercises(this.authService.getId()));
-        console.log([this.statisticsService.getAverageSpeedForExercise(this.authService.getId()),
-            this.statisticsService.getErrorsForExercise(this.authService.getId())])
-        Chart.register(...registerables);
-        if (statsChart)
-        { // @ts-ignore
-            new Chart(document.getElementById('statsChart'), {
+        this.statisticsService.isFetching.subscribe(value => {
+            if (!value) {
+                const statsChart = document.getElementById('statsChart');
+                console.log(this.statisticsService.getLabelsForExercises(this.authService.getId()));
+                console.log([this.statisticsService.getAverageSpeedForExercise(this.authService.getId()),
+                    this.statisticsService.getErrorsForExercise(this.authService.getId())])
+                Chart.register(...registerables);
+                if (statsChart) { // @ts-ignore
+                    new Chart(document.getElementById('statsChart'), {
                         type: 'bar',
                         data: {
                             labels: this.statisticsService.getLabelsForExercises(this.authService.getId()),
@@ -42,7 +44,9 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
                             }
                         }
                     });
-        }
+                }
+            }
+        });
     }
 
 }

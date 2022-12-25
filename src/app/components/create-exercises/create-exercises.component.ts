@@ -22,15 +22,19 @@ export class CreateExercisesComponent implements OnInit {
     name: string = '';
     text: string = '';
 
-    /*createExerciseForm = new FormGroup({
-        login: new FormControl('', [Validators.required,
+    createExerciseForm = new FormGroup({
+        /*login: new FormControl('', [Validators.required,
             Validators.pattern('[a-z0-9_-]{3,15}'),
             Validators.minLength(5),
             Validators.maxLength(50)]),
         password: new FormControl('', [Validators.required,
             Validators.pattern('(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}'),
-        ]),
-    });*/
+        ]),*/
+        name: new FormControl('',[Validators.required]),
+        time: new FormControl('',[Validators.required]),
+        length: new FormControl('',[Validators.required]),
+        text: new FormControl('',[Validators.required]),
+    });
 
     constructor(private complexityService: ComplexityService,
                 private exerciseService: ExerciseService,
@@ -74,15 +78,16 @@ export class CreateExercisesComponent implements OnInit {
 
     onSubmit() {
         const currentDate = new Date();
+        !this.isManualGeneration && this.createExerciseForm.controls['text'].patchValue(this.exerciseCreationService.generateText(this.complexity[this.selectedComplexityId].zones, Number(this.createExerciseForm.controls['length'].value)));
         this.exerciseService.fetchExercises().pipe(take(1)).subscribe(exercises => {
             console.log(exercises, this.isManualGeneration);
             this.exerciseService.postExercise({
                 id: exercises[exercises.length - 1].id + 1,
-                name: this.name,
+                name: this.createExerciseForm.controls['name'].value,
                 complexity: this.selectedComplexityId,
                 availableTime: Number(this.availableTime),
-                availableErrors: this.complexity[this.selectedComplexityId].maxErrors * Math.trunc(Number(this.length) / 100),
-                text: this.isManualGeneration ? this.text : this.exerciseCreationService.generateText(this.complexity[this.selectedComplexityId].zones, Number(this.length)),
+                availableErrors: Math.trunc(this.complexity[this.selectedComplexityId].maxErrors * (Number(this.createExerciseForm.controls['length'].value) / 100)),
+                text: this.createExerciseForm.controls['text'].value,
                 length: this.isManualGeneration ? this.text.length : Number(this.length),
                 creationDate: '' + currentDate.getDate() + '.' + (currentDate.getMonth() + 1) + '.' + currentDate.getFullYear(),
             });

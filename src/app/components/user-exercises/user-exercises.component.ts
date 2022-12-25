@@ -25,6 +25,7 @@ export class UserExercisesComponent implements OnInit {
             this.exercises = exercises.map(exercise => {
                 return {...exercise, ...{toggled: false, buttonText: 'Показать текст'}};
             });
+            this.showedExercises = this.exercises.filter(item => item.complexity + 1 === Number(this.selectedItem));
         });
     }
 
@@ -40,6 +41,10 @@ export class UserExercisesComponent implements OnInit {
             }
             return exercise;
         });
+    }
+
+    onSelect() {
+        this.showedExercises = this.exercises.filter(item => item.complexity + 1 === Number(this.selectedItem));
     }
 
     navigateToExercise(exerciseId: number) {

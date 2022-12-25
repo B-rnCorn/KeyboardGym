@@ -30,6 +30,7 @@ export interface Solution {
     errors: number,
     averageSpeed: number,
     isSuccess: boolean,
+
 }
 
 export interface Complexity {
