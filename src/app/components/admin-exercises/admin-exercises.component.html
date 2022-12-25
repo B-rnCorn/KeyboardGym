@@ -1,11 +1,11 @@
 <div class="setting-level" routerLink="/settings-level">Настроить уровень сложности</div>
 <div class="exercises-wrapper">
     <ng-container *ngFor="let exercise of exercises">
-        <nb-card status="info" class="exercises-item" (mouseenter)="showDeleteButton(exercise.id, true)">
+        <nb-card status="info" class="exercises-item" >
             <nb-card-header class="exercises-item__header">
                 <div>{{exercise.name}}</div>
                 <div class="header__right-item">{{exercise.creationDate}}
-                    <div *ngIf="exercise.hovered" class="trash-icon">
+                    <div  class="trash-icon">
                         <button nbButton status="danger" (click)="deleteExercise(exercise.id)"><nb-icon icon="trash-outline"></nb-icon></button>
                     </div>
                 </div>
