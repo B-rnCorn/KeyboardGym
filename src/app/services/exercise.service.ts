@@ -5,7 +5,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {API} from "../constants/api-routes";
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json','Accept':'*/*'})
+    headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': '*/*'})
 };
 
 @Injectable({
@@ -25,11 +25,19 @@ export class ExerciseService {
     }
 
     postExercise(exercise: Exercise): void {
-        console.log('Exercise',exercise);
-        this.http.post(API.EXERCISES, JSON.stringify(exercise), httpOptions).pipe(take(1)).subscribe((res=> console.log(res)));
+        console.log('Exercise', exercise);
+        this.http.post(API.EXERCISES, JSON.stringify(exercise), httpOptions).pipe(take(1)).subscribe((res => console.log(res)));
     }
 
     deleteExercise(exerciseId: number): Observable<any> {
-        return this.http.delete(API.EXERCISES+'/'+exerciseId);
+        return this.http.delete(API.EXERCISES + '/' + exerciseId);
+    }
+
+    updateExercise(exercise: Exercise): void {
+        this.http.patch(API.EXERCISES + '/' + exercise.id, {
+            name: exercise.name,
+            text: exercise.text,
+            availableTime: exercise.availableTime
+        }).pipe(take(1)).subscribe((res) => console.log(res));
     }
 }

@@ -17,6 +17,7 @@ import {SolutionsService} from "./solutions.service";
 import {UserService} from "./user.service";
 import {ExerciseService} from "./exercise.service";
 import {ChartDataset} from "../constants/types";
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -30,7 +31,8 @@ export class StatisticsService {
 
     constructor(private solutionsService: SolutionsService,
                 private userService: UserService,
-                private exerciseService: ExerciseService) {
+                private exerciseService: ExerciseService,
+                private authService: AuthService) {
         solutionsService.fetchSolutions().pipe(take(1)).subscribe(solutions => {
             this.solutions = solutions;
         });
@@ -43,6 +45,7 @@ export class StatisticsService {
     }
 
     fetchData() {
+        this.isFetching.next(true);
         forkJoin(
             [this.solutionsService.fetchSolutions(), this.userService.fetchUsers(), this.exerciseService.fetchExercises()]).pipe(take(1)).subscribe((observer) => {
             this.solutions = observer[0];
@@ -54,7 +57,6 @@ export class StatisticsService {
 
     getLabelsForExercises(userId: number): string[] {
         const exerciseIdsWithSolution = this.solutions.filter(solution => (userId === solution.userId)).map(item => item.exerciseId);
-        console.log('exerciseIdsWithSolution', exerciseIdsWithSolution, this.solutions);
         return this.solutions.filter(solution => exerciseIdsWithSolution.includes(solution.exerciseId)).map(item => {
             return this.exercises.find(exercise => exercise.id === item.exerciseId && item.userId === userId)?.name ?? ''
         }).filter(item => item !== undefined && item !== '');
@@ -76,5 +78,75 @@ export class StatisticsService {
         };
     }
 
+    getLabelsForExercisesAdmin(): string[] {
+        return this.exercises.map(exercise => exercise.name);
+    }
 
+    getAverageSpeedForExercisesAdmin(): ChartDataset {
+        return {
+            label: 'Средняя скорость',
+            data: this.exercises.map(exercise => {
+                let averageSpeed = 0;
+                this.solutions.forEach(solution => {
+                    if (exercise.id === solution.exerciseId) {
+                        averageSpeed = (averageSpeed + solution.averageSpeed) / 2;
+                    }
+                })
+                return averageSpeed;
+            }),
+            borderWidth: 1,
+        };
+    }
+
+    getErrorsForExercisesAdmin(): ChartDataset {
+        return {
+            label: 'Ошибки',
+            data: this.exercises.map(exercise => {
+                let errors = 0;
+                this.solutions.forEach(solution => {
+                    if (exercise.id === solution.exerciseId) {
+                        errors = (errors + solution.errors) / 2;
+                    }
+                })
+                return errors;
+            }),
+            borderWidth: 1,
+        };
+    }
+
+    getLabelsForUsersAdmin(): string[] {
+        return this.users.filter(user => user.id !== this.authService.getId()).map(user => user.login);
+    }
+
+    getAverageSpeedForUsersAdmin() {
+        return {
+            label: 'Средняя скорость',
+            data: this.users.map(user => {
+                let averageSpeed = 0;
+                this.solutions.forEach(solution => {
+                    if (user.id === solution.userId && user.id !== this.authService.getId()) {
+                        averageSpeed = (averageSpeed + solution.averageSpeed) / 2;
+                    }
+                })
+                return averageSpeed;
+            }),
+            borderWidth: 1,
+        };
+    }
+
+    getErrorsForUsersAdmin() {
+        return {
+            label: 'Ошибки',
+            data: this.users.map(user => {
+                let errors = 0;
+                this.solutions.forEach(solution => {
+                    if (user.id === solution.userId && user.id !== this.authService.getId()) {
+                        errors = (errors + solution.errors) / 2;
+                    }
+                })
+                return errors;
+            }),
+            borderWidth: 1,
+        };
+    }
 }

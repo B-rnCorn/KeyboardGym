@@ -8,7 +8,7 @@ import {
     NbCardModule, NbCheckboxModule, NbDialogModule, NbDialogService,
     NbFormFieldModule,
     NbIconModule, NbInputModule,
-    NbLayoutModule, NbOptionModule, NbSelectModule,
+    NbLayoutModule, NbOptionModule, NbSelectModule, NbTabsetModule,
     NbThemeModule
 } from "@nebular/theme";
 import {KeyboardComponent} from "./components/keyboard/keyboard.component";
@@ -75,6 +75,7 @@ import { UpdateDialogComponent } from './components/update-dialog/update-dialog.
         NbOptionModule,
         NbSelectModule,
         NbDialogModule.forRoot(),
+        NbTabsetModule,
 
 
     ],

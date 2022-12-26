@@ -42,22 +42,12 @@
       "creationDate": "13.12.2020"
     },
     {
-      "id": 1,
-      "name": "Моё новое упражнение",
-      "complexity": 0,
-      "availableTime": 60,
-      "availableErrors": 5,
-      "text": "",
-      "length": 0,
-      "creationDate": "1112022"
-    },
-    {
       "id": 2,
-      "name": "Автогенерация",
+      "name": "Автогенерация2",
       "complexity": 1,
-      "availableTime": 60,
+      "availableTime": "80",
       "availableErrors": 5,
-      "text": "",
+      "text": "Новейший текст",
       "length": 0,
       "creationDate": "1112022"
     },

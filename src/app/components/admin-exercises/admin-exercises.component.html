@@ -5,7 +5,7 @@
         <nb-card status="info" class="exercises-item" >
             <nb-card-header class="exercises-item__header">
                 <div>{{exercise.name}}</div>
-                <div class="edit" (click)="openModalWindow()">
+                <div class="edit" (click)="openModalWindow(exercise)">
                   Редактировать
                 </div>
                 <div class="header__right-item">{{exercise.creationDate}}

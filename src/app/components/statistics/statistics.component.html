@@ -1,5 +1,9 @@
 <nb-card>
-    <nb-card-header>Статистика по упражнениям</nb-card-header>
+    <nb-card-header *ngIf="!isAdmin()">Статистика по упражнениям</nb-card-header>
+    <nb-tabset *ngIf="isAdmin()" fullWidth="true" (changeTab)="onTabChange($event)">
+        <nb-tab tabTitle="Статистика по пользователям"></nb-tab>
+        <nb-tab tabTitle="Статистика по упражнениям"></nb-tab>
+    </nb-tabset>
     <nb-card-body>
         <div class="row">
             <div class="exercises"></div>

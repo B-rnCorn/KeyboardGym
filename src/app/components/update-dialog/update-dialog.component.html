@@ -6,12 +6,14 @@
                 <nb-icon icon="close-outline"></nb-icon>
             </button>
         </nb-card-header>
-        <nb-card-body class="modal__body">
+        <nb-card-body class="modal__body" [formGroup]="exerciseForm">
             <div class="body-input">
             <label>Название упражнения</label>
             <input nbInput
                    fullWidth
                    type="text"
+                   [defaultValue]="exercise?.name"
+                   [formControlName]="'name'"
                    autofocus
                    placeholder="Ввведите название">
             </div>
@@ -20,6 +22,8 @@
                 <input nbInput
                        fullWidth
                        type="text"
+                       [defaultValue]="exercise?.availableTime"
+                       [formControlName]="'time'"
                        autofocus
                      >
             </div>
@@ -28,13 +32,15 @@
                 <input nbInput
                        fullWidth
                        type="text"
+                       [defaultValue]="exercise?.text"
+                       [formControlName]="'text'"
                        autofocus
                        placeholder="Новый текст">
             </div>
         </nb-card-body>
         <nb-card-footer class="modal__footer">
             <div class="footer__button">
-                <button nbButton status="info">Сохранить изменения</button>
+                <button nbButton status="info" (click)="onSubmit()">Сохранить изменения</button>
             </div>
         </nb-card-footer>
     </nb-card>

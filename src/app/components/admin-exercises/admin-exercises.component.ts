@@ -12,8 +12,9 @@ import {UpdateDialogComponent} from "../update-dialog/update-dialog.component";
 })
 export class AdminExercisesComponent implements OnInit {
     exercises: Array<Exercise & { toggled: boolean, buttonText: string, hovered: boolean }> = [];
-    isEdit:Boolean = false;
-    constructor(private exerciseService: ExerciseService,private dialogService: NbDialogService) {
+    isEdit: Boolean = false;
+
+    constructor(private exerciseService: ExerciseService, private dialogService: NbDialogService) {
     }
 
     ngOnInit(): void {
@@ -27,8 +28,8 @@ export class AdminExercisesComponent implements OnInit {
     showDeleteButton(exerciseId: number, isMouseEnter: boolean) {
         this.exercises = this.exercises.map(exercise => {
             return exercise.id === exerciseId ?
-                {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: isMouseEnter} }:
-                {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: false} };
+                {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: isMouseEnter}} :
+                {...exercise, ...{toggled: false, buttonText: 'Показать текст', hovered: false}};
         });
     }
 
@@ -57,9 +58,12 @@ export class AdminExercisesComponent implements OnInit {
             return exercise;
         });
     }
-    openModalWindow(): void {
-        this.dialogService.open(UpdateDialogComponent, {closeOnBackdropClick: true});
+
+    openModalWindow(exercise: Exercise): void {
+        const ref = this.dialogService.open(UpdateDialogComponent);
+        ref.componentRef.instance.setExercise(exercise)
     }
+
     navigateToExercise(exerciseId: number) {
         //this.router.navigate(['task', {id: exerciseId}]);
     }

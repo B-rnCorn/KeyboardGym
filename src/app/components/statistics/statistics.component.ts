@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Chart, ChartItem, registerables} from "chart.js";
-import {SolutionsService} from "../../services/solutions.service";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Chart, ChartDataset, registerables} from "chart.js";
 import {StatisticsService} from "../../services/statistics.service";
 import {AuthService} from "../../services/auth.service";
+import {RoleEnum} from "../../model/data-interfaces";
+import {STATISTIC_TYPES} from "../../constants/constants";
 
 @Component({
     selector: 'app-statistics',
@@ -11,6 +12,8 @@ import {AuthService} from "../../services/auth.service";
 })
 export class StatisticsComponent implements OnInit, AfterViewInit {
 
+    private statsType: STATISTIC_TYPES = STATISTIC_TYPES.USERS;
+    private chart: Chart | null = null;
 
     constructor(private statisticsService: StatisticsService,
                 private authService: AuthService) {
@@ -20,21 +23,36 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
     }
 
+    onTabChange(event: any) {
+        if (event.tabTitle === 'Статистика по упражнениям') {
+            this.statsType = STATISTIC_TYPES.EXERCISES;
+            this.statisticsService.fetchData();
+        } else {
+            this.statsType = STATISTIC_TYPES.USERS;
+            this.statisticsService.fetchData();
+        }
+    }
+
+    isAdmin(): boolean {
+        return this.authService.getRoleId() === RoleEnum.ADMIN;
+    }
+
     ngAfterViewInit(): void {
+        Chart.register(...registerables);
         this.statisticsService.isFetching.subscribe(value => {
             if (!value) {
                 const statsChart = document.getElementById('statsChart');
                 console.log(this.statisticsService.getLabelsForExercises(this.authService.getId()));
                 console.log([this.statisticsService.getAverageSpeedForExercise(this.authService.getId()),
                     this.statisticsService.getErrorsForExercise(this.authService.getId())])
-                Chart.register(...registerables);
-                if (statsChart) { // @ts-ignore
-                    new Chart(document.getElementById('statsChart'), {
+                if (statsChart) {
+                    if (this.chart) this.chart.destroy();
+                    // @ts-ignore
+                    this.chart = new Chart(document.getElementById('statsChart'), {
                         type: 'bar',
                         data: {
-                            labels: this.statisticsService.getLabelsForExercises(this.authService.getId()),
-                            datasets: [this.statisticsService.getAverageSpeedForExercise(this.authService.getId()),
-                                this.statisticsService.getErrorsForExercise(this.authService.getId())]
+                            labels: this.getLabels(),
+                            datasets: this.getDatasets(),
                         },
                         options: {
                             scales: {
@@ -49,4 +67,29 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
         });
     }
 
+    getLabels(): string[] {
+        if (!this.isAdmin()) {
+            return this.statisticsService.getLabelsForExercises(this.authService.getId())
+        } else {
+            if (this.statsType === STATISTIC_TYPES.USERS) {
+                return this.statisticsService.getLabelsForUsersAdmin();
+            } else {
+                return this.statisticsService.getLabelsForExercisesAdmin();
+            }
+        }
+    }
+
+    getDatasets(): ChartDataset[] {
+        if (!this.isAdmin()) {
+            return [this.statisticsService.getAverageSpeedForExercise(this.authService.getId()),
+                this.statisticsService.getErrorsForExercise(this.authService.getId())]
+        } else {
+            if (this.statsType === STATISTIC_TYPES.USERS) {
+                return [this.statisticsService.getAverageSpeedForUsersAdmin(), this.statisticsService.getErrorsForUsersAdmin()]
+            } else {
+                return [this.statisticsService.getAverageSpeedForExercisesAdmin(),
+                    this.statisticsService.getErrorsForExercisesAdmin()]
+            }
+        }
+    }
 }
