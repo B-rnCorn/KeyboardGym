@@ -1,0 +1,46 @@
+.modal-wripper {
+    height: 100%;
+
+
+    .modal__header {
+        display: flex;
+        justify-content: space-between;
+
+        .header__button {
+            cursor: pointer;
+        }
+    }
+
+    .modal__body {
+
+        overflow-y: scroll;
+
+        .body__title {
+            text-align: center;
+        }
+        .body-input {
+            margin-top: 20px;
+            width: 100%;
+            &__time{
+                margin-top: 20px;
+               input{
+                   margin-left:10px;
+                   width:50px;
+               }
+            }
+
+        }
+
+    }
+    .modal__footer {
+        display: flex;
+        justify-content: center;
+
+        .footer__button {
+            margin-right: -150px;
+            width: 100%;
+            min-width: 300px;
+            height: 60px;
+        }
+    }
+}

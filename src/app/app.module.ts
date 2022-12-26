@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {
     NbAlertModule,
     NbButtonModule,
-    NbCardModule, NbCheckboxModule,
+    NbCardModule, NbCheckboxModule, NbDialogModule, NbDialogService,
     NbFormFieldModule,
     NbIconModule, NbInputModule,
     NbLayoutModule, NbOptionModule, NbSelectModule,
@@ -36,6 +36,7 @@ import {ExerciseService} from "./services/exercise.service";
 import {ExerciseCreationService} from "./services/exercise-creation.service";
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {StatisticsService} from "./services/statistics.service";
+import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import {StatisticsService} from "./services/statistics.service";
         TimerPipe,
         InfoComponent,
         StatisticsComponent,
+        UpdateDialogComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -72,6 +74,9 @@ import {StatisticsService} from "./services/statistics.service";
         NbCheckboxModule,
         NbOptionModule,
         NbSelectModule,
+        NbDialogModule.forRoot(),
+
+
     ],
     providers: [
         ExerciseValidationService,
@@ -81,6 +86,7 @@ import {StatisticsService} from "./services/statistics.service";
         ExerciseCreationService,
         AuthService,
         StatisticsService,
+        NbDialogService
     ],
     bootstrap: [AppComponent]
 })

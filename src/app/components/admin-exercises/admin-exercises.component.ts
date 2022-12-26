@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Exercise} from "../../model/data-interfaces";
 import {take} from "rxjs";
 import {ExerciseService} from "../../services/exercise.service";
+import {NbDialogService} from "@nebular/theme";
+import {UpdateDialogComponent} from "../update-dialog/update-dialog.component";
 
 @Component({
     selector: 'app-admin-exercises',
@@ -10,8 +12,8 @@ import {ExerciseService} from "../../services/exercise.service";
 })
 export class AdminExercisesComponent implements OnInit {
     exercises: Array<Exercise & { toggled: boolean, buttonText: string, hovered: boolean }> = [];
-
-    constructor(private exerciseService: ExerciseService) {
+    isEdit:Boolean = false;
+    constructor(private exerciseService: ExerciseService,private dialogService: NbDialogService) {
     }
 
     ngOnInit(): void {
@@ -55,7 +57,9 @@ export class AdminExercisesComponent implements OnInit {
             return exercise;
         });
     }
-
+    openModalWindow(): void {
+        this.dialogService.open(UpdateDialogComponent, {closeOnBackdropClick: true});
+    }
     navigateToExercise(exerciseId: number) {
         //this.router.navigate(['task', {id: exerciseId}]);
     }

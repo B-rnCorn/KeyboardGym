@@ -1,0 +1,41 @@
+<div class="modal-wripper">
+    <nb-card accent="info">
+        <nb-card-header class="modal__header">
+            Редактирование упражнения
+            <button nbButton size="small" class="header__button" status="danger" (click)="close()">
+                <nb-icon icon="close-outline"></nb-icon>
+            </button>
+        </nb-card-header>
+        <nb-card-body class="modal__body">
+            <div class="body-input">
+            <label>Название упражнения</label>
+            <input nbInput
+                   fullWidth
+                   type="text"
+                   autofocus
+                   placeholder="Ввведите название">
+            </div>
+            <div class="body-input__time">
+                <label>Время выполнения</label>
+                <input nbInput
+                       fullWidth
+                       type="text"
+                       autofocus
+                     >
+            </div>
+            <div class="body-input">
+                <label>Текст упражнения</label>
+                <input nbInput
+                       fullWidth
+                       type="text"
+                       autofocus
+                       placeholder="Новый текст">
+            </div>
+        </nb-card-body>
+        <nb-card-footer class="modal__footer">
+            <div class="footer__button">
+                <button nbButton status="info">Сохранить изменения</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+</div>
